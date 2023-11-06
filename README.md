@@ -31,6 +31,17 @@
 
 <br>
 
+### 환경파일 구성
+1. 프로젝트 폴더에 .env 파일 생성
+2. .env 파일에 Open API Key 입력 (다음 두 줄을 값과 함께 입력)
+
+> OPENAI_API_KEY=  
+> ORGANIZATION=
+
+3. .gitegnore 파일이 있는지 확인 (여러가지 내용들이 들어 있음, 원작자에게서 copy 해옴)
+
+<br>
+
 ### 가상환경 실행 & 필요한 라이브러리 설치
 1. VS Code 실행
 2. "파일 > 폴더열기" 통해 깃에서 복사한 프로젝트 폴더 오픈
@@ -43,17 +54,6 @@
 
 > pip install -r requirements.txt
 > * 주의: 반드시 가상환경 내에서 실행하여 설치해야 함
-
-<br>
-
-### 환경파일 구성
-1. 프로젝트 폴더에 .env 파일 생성
-2. .env 파일에 Open API Key 입력 (다음 두 줄을 값과 함께 입력)
-
-> OPENAI_API_KEY=  
-> ORGANIZATION=
-
-3. .gitegnore 파일이 있는지 확인 (여러가지 내용들이 들어 있음, 원작자에게서 copy 해옴)
 
 <br>
 
