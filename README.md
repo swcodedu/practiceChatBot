@@ -61,6 +61,20 @@
 여기까지 했으면 잘 된것임. 이제 작업 하시면 됩니다 ^^
 ***
 
+### 파일 설명
+| 파일명 | 설명 |
+|---|:---:|
+| `.RFP.txt` | 마지막 숙제 파일 |
+| `get_tools.py` | get_tools 모듈만 따로 만들고 있는 중, 완성 못함 |
+| `install.txt` | 필요한 라이브러리 일괄 설치 |
+| `langchain_E_retrieval_tool.py` | get_tools 모듈 |
+| `requirements.txt` | 필요한 라이브러리 일괄 설치 |
+| `submit_useFastAPI.py` | 작성중인 과제 파일 |
+| `submit_useFlask.py` | 플라스크 활용 파일 (미사용) |
+| `teacherFastAPI.py` | 교수님 완성 파일 |
+| `useFastAPI_org.py` | FastAPI 활용 원본 파일 |
+| `useFlask_org.py` | Flast 활용 원본 파일 |
+
 ### Trouble Shooting
 
 종종 가상환경 실행하는 Activates 파일 실행시 시큐리티 오류가 나고는 합니다.  
