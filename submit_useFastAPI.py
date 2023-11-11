@@ -38,6 +38,35 @@ from pydantic import BaseModel
 import uuid
 import asyncio
 
+'''
+##########################################################################
+Add by Jasmine Kim from Mr.Hong's code
+##########################################################################
+'''
+
+import  os
+import  sys
+import  openai
+from    langchain.chat_models             import  ChatOpenAI
+from    langchain.agents.agent_toolkits   import  create_conversational_retrieval_agent
+from    dotenv                            import  load_dotenv
+from    get_tools                         import  get_tools
+
+load_dotenv()
+
+openai.api_key        = os.getenv("OPENAI_API_KEY")
+openai.organization   = os.getenv("ORGANIZATION")
+sys.path.append(os.getenv("PYTHONPATH"))
+llm_model = "gpt-3.5-turbo"
+
+llm = ChatOpenAI(model_name=llm_model, temperature=0)
+
+'''
+##########################################################################
+Add finished
+##########################################################################
+'''
+
 is_debug = True
 app = FastAPI(debug=is_debug, docs_url="/api-docs")
 
@@ -60,11 +89,16 @@ class PromptResult(BaseModel):
 #   return FileResponse('./html-docs/index.html')
 
 
-
-
 @app.get("/api/new_token")
 async def new_token(db: int):
   # 원하는 db 처리 로직을 여기에 추가하실 수 있습니다.
+
+  token   = str(uuid.uuid4())
+  tools   = get_tools()
+  agent_executor  = create_conversational_retrieval_agent(lim, tools, verbose=True)
+  tokens [token]  = agent_executor
+
+
   return jsonable_encoder(TokenOutput(token=str(uuid.uuid4())))
 
 request_idx = 0
@@ -76,14 +110,24 @@ async def process_prompt(request: PromptRequest):
   global request_idx
   idx = request_idx
   request_idx = request_idx + 1
+  
+  executor  = token [request.token]
+  if not executor:
+    raise ValueError("Token is not abailable. (토큰이 없습니다.)")
+  result  = executor({"input": request.prompt})
+
   if is_debug:
     current_thread = threading.current_thread()
     print(f"{idx}.{request.token} 현재 스레드: {current_thread.name} reqeust.")
     print(f"{idx}.{request.token} reqeust.")
+
   await asyncio.sleep(10)  # 예시를 위한 비동기 작업 (1초 대기)
+
   if is_debug:
     print(f"{idx}.{request.token} end.")
-  return jsonable_encoder(PromptResult(result=f"Processed: {request.prompt}"))
+
+  #return jsonable_encoder(PromptResult(result=f"Processed: {request.prompt}"))
+  return jsonable_encoder(PromptResult(result=result["output"]))
 
 
 app.mount("/", StaticFiles(directory="./html-docs", html=True), name="static")
