@@ -25,7 +25,7 @@
 
 > git clone https://github.com/swcodedu/practiceChatBot
 
-5. 다음 명령어 입력하여 가상환경 생성
+5. 프로젝트 디렉토리로 이동 & 다음 명령어 입력하여 가상환경 생성
 
 > python -m venv venv
 
